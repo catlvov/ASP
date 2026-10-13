@@ -1,9 +1,10 @@
+@page "/Fibonacci"
 @rendermode InteractiveServer
 
 <h3>Fibonacci</h3>
 
 <input type="number" @bind="count" />
-<button @onclick="Generate">—генерировать</button>
+<button class="btn btn-primary" @onclick="Generate">—генерировать</button>
 
 @if (numbers.Any())
 {
