@@ -1,0 +1,28 @@
+@rendermode InteractiveServer
+
+<h3>Fibonacci</h3>
+
+<input type="number" @bind="count" />
+<button @onclick="Generate">—генерировать</button>
+
+@if (numbers.Any())
+{
+    <p>@string.Join(", ", numbers)</p>
+}
+
+@code {
+    private int count;
+    private List<long> numbers = new();
+
+    private void Generate()
+    {
+        numbers.Clear();
+        long a = 0, b = 1;
+
+        for (int i = 0; i < count; i++)
+        {
+            numbers.Add(a);
+            (a, b) = (b, a + b); // компактный обмен значений
+        }
+    }
+}

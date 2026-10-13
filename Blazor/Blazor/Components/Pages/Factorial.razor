@@ -1,0 +1,47 @@
+﻿@rendermode InteractiveServer
+
+<h3>Power</h3>
+
+<input type="number" @bind="n" @bind:event="oninput" />
+<br />
+Основание (n)
+<br />
+<input type="number" @bind="a" @bind:event="oninput" />
+Степень (a)
+
+<h2>@n<sup>@a</sup> = @p</h2>
+
+@if (errorMsg != null)
+{
+    <div style="color: red;">@errorMsg</div>
+}
+
+<button class="btn btn-primary" @onclick="Calculate">Найти</button>
+<hr />
+
+@code {
+    int n;
+    int a;
+    double p;
+    string? errorMsg;
+
+    void Calculate()
+    {
+        errorMsg = null;
+        try
+        {
+            p = Math.Pow(n, a);
+
+            if (double.IsNaN(p) || double.IsInfinity(p))
+            {
+                errorMsg = "Результат не может быть вычислен (слишком большое число или недопустимая операция).";
+                p = 0;
+            }
+        }
+        catch
+        {
+            errorMsg = "Произошла ошибка при расчёте.";
+            p = 0;
+        }
+    }
+}
