@@ -1,20 +1,7 @@
-@rendermode InteractiveServer
-@page "/Power"
+п»ї@page "/Power"
+
 <h3>Power</h3>
 
-<input type="number" step="any" @bind="n" @bind:event="oninput" />
-<br />
-<input type="number" step="any" @bind="a" @bind:event="oninput" />
-
-<h2>@n<sup>@a</sup> = @p</h2>
-
-<button class="btn btn-primary" @onclick="Calculate">Найти</button>
-<hr />
-
 @code {
-    double n;
-    double a;
-    double p;
 
-    void Calculate() => p = Math.Pow(n, a);
 }

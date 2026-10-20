@@ -1,29 +1,26 @@
-@page "/Fibonacci"
+п»ї@page "/Fibonacci"
 @rendermode InteractiveServer
 
 <h3>Fibonacci</h3>
 
-<input type="number" @bind="count" />
-<button class="btn btn-primary" @onclick="Generate">Сгенерировать</button>
+<input type="number" @bind="n" @bind:after="Calculate" />
 
-@if (numbers.Any())
+@foreach (int i in row)
 {
-    <p>@string.Join(", ", numbers)</p>
+	<div>@i</div>
 }
 
-@code {
-    private int count;
-    private List<long> numbers = new();
+@code
+{
+	int n = 0;
+	List<int> row = new List<int>();
 
-    private void Generate()
-    {
-        numbers.Clear();
-        long a = 0, b = 1;
-
-        for (int i = 0; i < count; i++)
-        {
-            numbers.Add(a);
-            (a, b) = (b, a + b); // компактный обмен значений
-        }
-    }
+	void Calculate()
+	{
+		row = new List<int>();
+		for (int i = 0, a = 0, b = 1, c = a + b; i < n; i++, c = (a = b) + (b = c))
+		{
+			row.Add(a);
+		}
+	}
 }
