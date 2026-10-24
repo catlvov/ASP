@@ -1,8 +1,9 @@
-﻿body {
+﻿.controls, .controls > label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-
-.controls {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+    .controls select{
+        width:48px;
+        text-align:left;
+    }
