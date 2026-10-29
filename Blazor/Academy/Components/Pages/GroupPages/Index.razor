@@ -21,7 +21,7 @@
     <PropertyColumn Property="group => group.Direction.direction_name" />
     <PropertyColumn Property="group => group.start_date" />
     <PropertyColumn Property="group => group.start_time" />
-    <PropertyColumn Property="group => group.learning_day" />
+    <PropertyColumn Property="group => new Week((int)(group.learning_day ?? 0))" />
 
     <TemplateColumn Context="group">
         @* <a href="@($"groups/edit?group_id={group.group_Id}")">Edit</a> | *@
