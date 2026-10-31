@@ -1,19 +1,21 @@
-﻿
-<fieldset>
+﻿﻿
+<fieldset class="form-control">
 	<legend>LearningDays</legend>
 	<ul>
-		@for(int i = 0; i < 7; ++i)
+		@for (int i = 0; i < 7; i++)
 		{
 			int index = i;
 			<li>
-				<input type="checkbox" id="@Week.DAYNAMES[index]" @bind="@days[i]" @bind:after="Compress" />
+				<input type="checkbox" id="@Week.DAYNAMES[i]"
+					   @bind="@days[index]" @bind:after="Compress" />
 				<label for="@Week.DAYNAMES[i]">@Week.DAYNAMES[i]</label>
 			</li>
 		}
 	</ul>
 </fieldset>
 
-@code {
+@code
+{
 	bool[] days = new bool[7];
 
 	[Parameter]
@@ -22,14 +24,15 @@
 	void Extract()
 	{
 		int mask = Group.learning_day ?? 0;
-		for (int i=0; i < 7; ++i)
+		for (int i = 0; i < 7; i++)
+		{
 			days[i] = ((mask >> i) & 1) == 1;
+		}
 	}
-
 	void Compress()
 	{
 		int mask = 0;
-		for(int i = 0;i<7;++i)
+		for (int i = 0; i < 7; i++)
 		{
 			if (days[i]) mask |= 1 << i;
 		}
