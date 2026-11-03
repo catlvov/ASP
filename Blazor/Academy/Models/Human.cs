@@ -30,5 +30,12 @@ namespace Academy.Models
 		public string? email { get; set; }
 		public string? phone  { get; set; }
 		public byte[]? photo{ get; set; }
+
+		//calculete
+		
+		public string full_name
+		{
+			get => $"{last_name} {first_name} {middle_name}";
+		}
 	}
 }
