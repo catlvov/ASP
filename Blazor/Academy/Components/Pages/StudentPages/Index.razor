@@ -29,12 +29,18 @@
     >
         <a href=@($"/Students/details?stud_id={student.stud_id}")>@student.full_name</a>
     </TemplateColumn>
+    <TemplateColumn Context="student"
+                    Title="Age"
+                    Sortable="true"
+                    SortBy="sortByBorthDate">
+                    @student.age
+    </TemplateColumn>
     @* <PropertyColumn Property="student => student.full_name" Title="Студент" Sortable="true" /> *@
     <PropertyColumn Property="student => student.birth_date" Sortable="true"/>
     <PropertyColumn Property="student => student.Group.group_name" Sortable="true"/>
     <PropertyColumn Property="student => student.Group.Direction.direction_name" />
 @*     
-    <PropertyColumn Property="student => student.email" />
+    <PropertyColumn Property="student => student.email" />Здравствуйте, можно ссылочку?
     <PropertyColumn Property="student => student.phone" />
     <PropertyColumn Property="student => student.photo" />
 *@
@@ -51,6 +57,7 @@
 @code {
     private AcademyContext context = default!;
     GridSort<Student> sortBy = GridSort<Student>.ByAscending(s => s.last_name);
+    GridSort<Student> sortByBorthDate = @GridSort<Student>.ByDescending(s => s.birth_date);
     protected override void OnInitialized()
     {
         context = DbFactory.CreateDbContext();

@@ -17,12 +17,19 @@
     </p>
 </div>
 
-<QuickGrid Class="table" Items="context.Groups.Include(g => g.Direction)">
+<QuickGrid Class="table" Items="context.Groups.Include(g => g.Direction).Include(g => g.Students)">
     <PropertyColumn Sortable="true" Property="group => group.group_name" />
+    <PropertyColumn Sortable="true" Property="group => group.Students.Count" />
     <PropertyColumn Sortable="true" Property="group => group.Direction.direction_name" />
     <PropertyColumn Sortable="true" Property="group => group.start_date" />
     <PropertyColumn Sortable="true" Property="group => group.start_time" />
-    <PropertyColumn Property="group => new Week((int)(group.learning_day ?? 0))" />
+    @* <PropertyColumn Property="group => new Week((int)(group.learning_day ?? 0))" /> *@
+    <TemplateColumn Context="group"
+                    Title="Учебнае дни"
+                    Sortable="true"
+                    SortBy="sortByLearningDays">
+                    @(new Week((int)(group.learning_day ?? 0)))
+    </TemplateColumn>
 
     <TemplateColumn Context="group">
         @* <a href="@($"groups/edit?group_id={group.group_Id}")">Edit</a> | *@
@@ -33,7 +40,7 @@
 
 @code {
     private AcademyContext context = default!;
-
+    GridSort<Group> sortByLearningDays = GridSort<Group>.ByAscending(g => g.learning_day);
     protected override void OnInitialized()
     {
         context = DbFactory.CreateDbContext();

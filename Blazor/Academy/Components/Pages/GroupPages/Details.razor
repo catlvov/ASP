@@ -4,6 +4,8 @@
 @inject IDbContextFactory<AcademyContext> DbFactory
 @inject NavigationManager NavigationManager
 
+@using Microsoft.AspNetCore.Components.QuickGrid;
+
 <PageTitle>Details</PageTitle>
 
 @* <h1>Details</h1> *@
@@ -32,11 +34,16 @@
                 <dd class="col-sm-10">@group.start_time</dd>
             <dt class="col-sm-2">learning_day</dt>
                  <dd class="col-sm-10">@(new Week((int)(group.learning_day ?? 0)))</dd>
+            <dt class="col-sm-2">Количество студентов</dt>
+                 <dd class="col-sm-10">@group.Students.Count</dd>
         </dl>
+        <QuickGrid Items="@group.Students.AsQueryable()" Class="table">
+            <PropertyColumn Property=" s => s.full_name" />
+            <PropertyColumn Property=" s => s.age" />
+        </QuickGrid>
         @* <div>
             <a href="@($"/groups/edit?group_id={group.group_Id}")">Edit</a> |
         </div> *@
-        <a href="@($"/groups")" class="btn btn-primary">Back to List</a>
     }
 </div>
 
@@ -49,7 +56,9 @@
     protected override async Task OnInitializedAsync()
     {
         using var context = DbFactory.CreateDbContext();
-        group = await context.Groups.Include(g => g.Direction).FirstOrDefaultAsync(m => m.group_Id == group_Id);
+        group = await context.Groups
+                            .Include(g => g.Direction).Include(g => g.Students)
+                            .FirstOrDefaultAsync(m => m.group_Id == group_Id);
 
         if (group is null)
         {

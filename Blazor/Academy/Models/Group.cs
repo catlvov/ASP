@@ -13,7 +13,7 @@ namespace Academy.Models
 		[Required]
 		[StringLength(10, MinimumLength = 4)]
 		[Column("group_name", TypeName = "NCHAR(10)")]
-		public string group_name { get;set;}
+		public string group_name { get; set; }
 
 		[Required]
 		[Column("direction", TypeName = "TINYINT")]
@@ -32,6 +32,8 @@ namespace Academy.Models
 
 		// Navigation properties:
 		public Direction Direction { get; set; }
+
+		public ICollection<Student> Students {get; set;}
 
 	}
 }
