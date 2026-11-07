@@ -1,6 +1,4 @@
-﻿<h3>Photo</h3>
-
-<div class="photo-area">
+﻿<div class="photo-area">
 	<div>
 		@if(Human.photo != null)
 		{
@@ -23,7 +21,7 @@
 	{
 		URL = e.File;
 		MemoryStream memoryStream = new MemoryStream();
-		await URL.OpenReadStream().CopyToAsync(memoryStream);
+		await URL.OpenReadStream(1024*1024*5).CopyToAsync(memoryStream);
 		Human.photo = memoryStream.ToArray();
 		memoryStream.Close();
 	}

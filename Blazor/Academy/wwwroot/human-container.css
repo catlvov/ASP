@@ -3,3 +3,15 @@
 	display:flex;
 	justify-content:space-between;
 }
+.humna-text-filds
+{
+	width:50%;
+	min-width: 400px;
+}
+.photo-area{
+	width:40%;
+}
+.photo-area img
+{
+	width:100%
+}
