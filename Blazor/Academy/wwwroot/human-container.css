@@ -5,12 +5,25 @@
 }
 .humna-text-filds
 {
-	width:50%;
+	width:55%;
 	min-width: 400px;
 }
-.photo-area{
-	width:40%;
+.human-edit-filds 
+{
+	width: 45%;
+	min-width: 400px;
 }
+.photo-area {
+	width: 40%;
+	box-sizing: border-box;
+}
+	.photo-area > div {
+		width: 100%;
+		height: auto; 
+		border: solid 1px;
+		display: inline-block;
+	}
+
 .photo-area img
 {
 	width:100%
