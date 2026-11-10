@@ -12,5 +12,10 @@ namespace Academy.Models
 		public DateOnly work_since { get; set; }
 		[Column(TypeName = "SMALLMONEY")]
 		public int rate { get; set; }
+		//calculated properties
+		public int experience
+		{
+			get => (int)((DateTime.Now.Date - work_since.ToDateTime(new TimeOnly(0)).Date).Days / 365.25);
+		}
 	}
 }

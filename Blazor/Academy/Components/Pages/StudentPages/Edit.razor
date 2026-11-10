@@ -1,8 +1,9 @@
 @page "/students/edit"
 @rendermode InteractiveServer
-@using Microsoft.EntityFrameworkCore
 @implements IDisposable
+@using Microsoft.EntityFrameworkCore
 @using Academy.Models
+@using Academy.Components.Controls;
 @inject IDbContextFactory<AcademyContext> DbFactory
 @inject NavigationManager NavigationManager
 @inject PersistentComponentState ApplicationState
