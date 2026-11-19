@@ -9,18 +9,18 @@ namespace Academy.Models
 		[Required]
 		[StringLength(50)]
 		[DisplayName("Фамилия")]
-		[RegularExpression(@"^[A-ZА-ЯЁ]+[a-zа-яё]$")]
+		[RegularExpression(@"^[A-Za-zA-Яа-яЁё]+$")]
 		public string last_name { get; set; }
 
 		[Required]
 		[StringLength(50)]
 		[DisplayName("Имя")]
-		[RegularExpression(@"^[A-ZА-Я]+[a-zа-я]*$")]
+		[RegularExpression(@"^[A-Za-zA-Яа-яЁё]+$")]
 		public string first_name { get; set; }
 
 		[StringLength(50)]
 		[DisplayName("Отчество")]
-		[RegularExpression(@"^[A-ZА-Я]+[a-zа-я]*$")]
+		[RegularExpression(@"^[A-Za-zA-Яа-яЁё]+$")]
 		public string? middle_name { get; set; }
 		[Required]
 		[DisplayName("Дата рождения")]
