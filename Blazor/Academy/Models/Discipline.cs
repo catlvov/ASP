@@ -18,5 +18,6 @@ namespace Academy.Models
 
 		//Navigation properties:
 		public ObservableCollection<TeachersDisciplinesRelation> TDR { get; set; }
+		public ObservableCollection<DependentDiscciplines> DependentDiscciplines { get; set; }
 	}
 }
