@@ -5,18 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Academy.Models
 {
-	[PrimaryKey(nameof(discipline),nameof(dependent_discipline))]
-	public class DependentDiscciplines
+	[PrimaryKey(nameof(discipline),nameof(required_discipline))]
+	public class RequiredDisciplines
 	{
 		[Column("discipline", TypeName = "SMALLINT")]
 		[ForeignKey(nameof(Discipline))]
 		public int discipline { get; set; }
-		[Column("dependent_discipline", TypeName = "SMALLINT")]
-		[ForeignKey(nameof(DependentDiscipline))]
-		public int dependent_discipline { get; set; }
+		[Column("required_discipline",TypeName = "SMALLINT")]
+		[ForeignKey(nameof(RequiredDiscipline))]
+		public int required_discipline { get; set; }
 
-		//navifation properties:
+		//Navigation properties
 		public Discipline Discipline { get; set; }
-		public Discipline DependentDiscipline { get; set; }
+		public Discipline RequiredDiscipline { get; set; }
 	}
 }

@@ -24,15 +24,32 @@
             <dt class="col-sm-2">discipline_name</dt>     <dd class="col-sm-10">@discipline.discipline_name</dd>
             <dt class="col-sm-2">number_of_lessons</dt>   <dd class="col-sm-10">@discipline.number_of_lessons</dd>
         </dl>
-        @if(discipline.DependentDiscciplines != null)
-        {
-            <ul>
-                @foreach(DependentDiscciplines dd in discipline.DependentDiscciplines)
+        <div class="adjacent-disciplines">
+            <div>
+                <h4>Тербуемые дисциплины</h4>
+                @if(discipline.RequiredDisciplines != null)
                 {
-                        <li>@dd.DependentDiscipline.discipline_name</li>
+                    <ul>
+                        @foreach(RequiredDisciplines dd in discipline.RequiredDisciplines)
+                        {
+                                <li>@dd.RequiredDiscipline.discipline_name</li>
+                        }
+                    </ul>
                 }
-            </ul>
-        }
+            </div>
+            <div>
+                <h4>Зависимые дисциплины</h4>
+                @if(discipline.DependentDisciplines != null)
+                {
+                    <ul>
+                        @foreach(DependentDisciplines dd in discipline.DependentDisciplines)
+                        {
+                                <li>@dd.DependentDiscipline.discipline_name</li>
+                        }
+                    </ul>
+                }
+            </div>
+        </div>
         <hr />
         <h3>Преподователи @(discipline.TDR.Count)</h3>
         <ul>
@@ -58,7 +75,8 @@
         using var context = DbFactory.CreateDbContext();
         discipline = await context.Disciplines
                                         .Include(d => d.TDR).ThenInclude(tdr => tdr.Teacher)
-                                        .Include(d => d.DependentDiscciplines).ThenInclude(dd => dd.DependentDiscipline)
+                                        .Include(d => d.DependentDisciplines).ThenInclude(dd => dd.DependentDiscipline)
+                                        .Include(d => d.RequiredDisciplines).ThenInclude(rd => rd.RequiredDiscipline)
                                         .FirstOrDefaultAsync(m => m.discipline_id == discipline_id);
 
         if (discipline is null)
