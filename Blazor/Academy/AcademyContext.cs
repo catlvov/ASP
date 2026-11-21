@@ -18,12 +18,17 @@ public class AcademyContext(DbContextOptions<AcademyContext> options) : DbContex
             .WithOne(dd => dd.Discipline)
             .HasForeignKey(dd => dd.discipline);
 
-        //modelBuilder.Entity<DependentDiscciplines>()
-        //    .HasOne(dd => dd.Discipline)
         modelBuilder.Entity<Discipline>()
             .HasMany(d => d.RequiredDisciplines)
-            .WithOne(rd =>  rd.Discipline)
-            .HasForeignKey(rd => rd.discipline);
+            .WithOne(dd => dd.DependentDiscipline)
+            .HasForeignKey(dd => dd.dependent_discipline);
+
+        //modelBuilder.Entity<DependentDiscciplines>()
+        //    .HasOne(dd => dd.Discipline)
+        //modelBuilder.Entity<Discipline>()
+        //    .HasMany(d => d.RequiredDisciplines)
+        //    .WithOne(rd =>  rd.Discipline)
+        //    .HasForeignKey(rd => rd.discipline);
         //    .WithMany(d => d.DependentDiscciplines)
     }
     
