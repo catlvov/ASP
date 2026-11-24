@@ -12,8 +12,8 @@
 				@foreach(Discipline d in disciplines)
 				{
 				if (Discipline.RequiredDisciplines.Where(rb => rb.discipline == d.discipline_id).Any()	||
-				requieredDisciplines.Where(rb => rb.discipline == d.discipline_id).Any())
-				{ continue; }
+					requieredDisciplines.Where(rb => rb.discipline == d.discipline_id).Any())
+					{ continue; }
 				<option value="@d.discipline_id">@d.discipline_name</option>
 				}
 			</InputSelect>
