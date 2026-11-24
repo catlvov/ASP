@@ -10,6 +10,7 @@ public class AcademyContext(DbContextOptions<AcademyContext> options) : DbContex
     public DbSet<Academy.Models.Discipline> Disciplines { get; set; } = default!;
     public DbSet<Academy.Models.TeachersDisciplinesRelation> TeachersDisciplinesRelation { get; set; } = default!;
     public DbSet<Academy.Models.DependentDisciplines> DependentDisciplines { get; set; } = default!;
+    public DbSet<Academy.Models.Lesson> Schedule { get; set; } = default!;
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
