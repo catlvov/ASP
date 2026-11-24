@@ -7,4 +7,19 @@
 	.adjacent-disciplines > ul
 	{
 		min-width:45%;
+		list-style:space-between;
 	}
+	.adjacent-disciplines > div
+	{
+		margin:16px;
+	}
+		.adjacent-disciplines > div ul
+		{
+			list-style:none;
+		}
+.disciplines-deopdown-container
+{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+}
